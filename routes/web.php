@@ -13,4 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',\App\Http\Livewire\Admin\Dashboard\Index::class)->name('admin.dashboard.index');
+/**
+ * Admin Routes
+ */
+Route::prefix('/admin')->name('admin.')->group(function (){
+    Route::get('/dashboard',\App\Http\Livewire\Admin\Dashboard\Index::class)->name('dashboard.index');
+    /** Countries */
+    Route::get('/countries',App\Http\Livewire\Admin\Country\Index::class)->name('country.index');
+});
+
