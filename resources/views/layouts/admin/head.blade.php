@@ -7,6 +7,8 @@
     <link href="/admin/layouts/vertical-dark-menu/css/light/loader.css" rel="stylesheet" type="text/css" />
     <link href="/admin/layouts/vertical-dark-menu/css/dark/loader.css" rel="stylesheet" type="text/css" />
     <script src="/admin/layouts/vertical-dark-menu/loader.js"></script>
+    <link rel="stylesheet" href="/fonts/Webfonts/fontiran.css">
+    <link rel="stylesheet" href="/fonts/Webfonts/style.css">
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
     <link href="/admin/src/bootstrap/css/bootstrap.rtl.min.css" rel="stylesheet" type="text/css" />
