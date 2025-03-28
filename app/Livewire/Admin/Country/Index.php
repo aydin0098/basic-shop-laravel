@@ -54,7 +54,7 @@ class Index extends Component
 
     public function render()
     {
-        $countries = Country::query()->paginate(20);
+        $countries = Country::query()->orderByDesc('created_at')->paginate(20);
         return view('livewire.admin.country.index',[
             'countries' => $countries
         ])->layout('layouts.admin.app');
