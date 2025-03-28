@@ -8,12 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Country extends Model
 {
     use HasFactory;
+
     protected $guarded = [];
 
-    public function store($formData)
+    public function store($formData, $countryId)
     {
-        Country::query()->create([
-            'name' => $formData['name']
-        ]);
+        Country::query()->updateOrCreate(
+            [
+                'id' => $countryId
+            ],
+            [
+                'name' => $formData['name']
+            ]
+        );
     }
 }

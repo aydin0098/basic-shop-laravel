@@ -6,7 +6,7 @@
 <script src="/admin/src/plugins/src/sweetalerts2/sweetalerts2.min.js"></script>
 <script src="/admin/src/plugins/src/sweetalerts2/custom-sweetalert.js"></script>
 <script>
-   window.addEventListener('success', function() {
+   window.addEventListener('success', function($event) {
        const Toast = Swal.mixin({
            toast: true,
            position: 'bottom',
@@ -21,7 +21,7 @@
 
        Toast.fire({
            icon: 'success',
-           title: 'عملیات ذخیره با موفقیت انجام شد'
+           title: $event.detail
        })
     })
 </script>
