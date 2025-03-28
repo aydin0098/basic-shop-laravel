@@ -18,6 +18,9 @@
     <link rel="stylesheet" type="text/css" href="/admin/src/assets/css/light/elements/alert.css">
     <link rel="stylesheet" type="text/css" href="/admin/src/assets/css/dark/elements/alert.css">
 
+    <link rel="stylesheet" href="/admin/src/plugins/src/sweetalerts2/sweetalerts2.css">
+
+    <link href="/admin/src/assets/css/light/scrollspyNav.css" rel="stylesheet" type="text/css" />
     <link href="/admin/src/plugins/css/light/sweetalerts2/custom-sweetalert.css" rel="stylesheet" type="text/css" />
 
     <link href="/admin/src/assets/css/dark/scrollspyNav.css" rel="stylesheet" type="text/css" />

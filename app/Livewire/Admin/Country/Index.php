@@ -24,6 +24,7 @@ class Index extends Component
         $validator->validate();
 
         $country->store($formData);
+        $this->dispatch('success');
 
     }
     public function render()

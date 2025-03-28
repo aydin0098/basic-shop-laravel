@@ -5,4 +5,24 @@
 <script src="/admin/layouts/vertical-dark-menu/app.js"></script>
 <script src="/admin/src/plugins/src/sweetalerts2/sweetalerts2.min.js"></script>
 <script src="/admin/src/plugins/src/sweetalerts2/custom-sweetalert.js"></script>
+<script>
+   window.addEventListener('success', function() {
+       const Toast = Swal.mixin({
+           toast: true,
+           position: 'bottom',
+           showConfirmButton: false,
+           timer: 3000,
+           timerProgressBar: true,
+           didOpen: (toast) => {
+               toast.addEventListener('mouseenter', Swal.stopTimer)
+               toast.addEventListener('mouseleave', Swal.resumeTimer)
+           }
+       })
+
+       Toast.fire({
+           icon: 'success',
+           title: 'عملیات ذخیره با موفقیت انجام شد'
+       })
+    })
+</script>
 @yield('scripts')
