@@ -20,6 +20,8 @@ Route::prefix('/admin')->name('admin.')->group(function (){
     Route::get('/dashboard', App\Livewire\Admin\Dashboard\Index::class)->name('dashboard.index');
     /** Countries */
     Route::get('/countries', \App\Livewire\Admin\Country\Index::class)->name('country.index');
+    /** States */
+    Route::get('/states', \App\Livewire\Admin\State\Index::class)->name('state.index');
     Route::get('/test', \App\Livewire\Test::class)->name('country.test');
 });
 
