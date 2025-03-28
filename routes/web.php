@@ -17,8 +17,9 @@ use Illuminate\Support\Facades\Route;
  * Admin Routes
  */
 Route::prefix('/admin')->name('admin.')->group(function (){
-    Route::get('/dashboard',\App\Http\Livewire\Admin\Dashboard\Index::class)->name('dashboard.index');
+    Route::get('/dashboard', App\Livewire\Admin\Dashboard\Index::class)->name('dashboard.index');
     /** Countries */
-    Route::get('/countries',App\Http\Livewire\Admin\Country\Index::class)->name('country.index');
+    Route::get('/countries', \App\Livewire\Admin\Country\Index::class)->name('country.index');
+    Route::get('/test', \App\Livewire\Test::class)->name('country.test');
 });
 
