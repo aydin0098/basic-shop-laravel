@@ -29,7 +29,10 @@ class Index extends Component
 
         $country->store($formData,$this->countryId);
         $this->reset();
-        $this->dispatch('success','عملیات با موفقیت انجام شد');
+        $this->dispatch('success',[
+            'message' => 'عملیات با موفقیت انجام شد',
+            'icon' => 'success'
+        ]);
 
     }
 
@@ -48,7 +51,10 @@ class Index extends Component
     public function delete($countryId)
     {
         $country = Country::query()->firstWhere('id',$countryId)->delete();
-        $this->dispatch('success','عملیات حذف با موفقیت انجام شد');
+        $this->dispatch('success',[
+            'message' => 'عملیات حذف موفقیت امیز بود',
+            'icon' => 'success'
+        ]);
 
     }
 

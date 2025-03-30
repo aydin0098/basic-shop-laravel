@@ -24,6 +24,8 @@ Route::prefix('/admin')->name('admin.')->group(function (){
     Route::get('/states', \App\Livewire\Admin\State\Index::class)->name('state.index');
     /** Cities */
     Route::get('/cities', \App\Livewire\Admin\City\Index::class)->name('city.index');
+    /** Categories */
+    Route::get('/categories', \App\Livewire\Admin\Category\Index::class)->name('category.index');
     Route::get('/test', \App\Livewire\Test::class)->name('country.test');
 });
 

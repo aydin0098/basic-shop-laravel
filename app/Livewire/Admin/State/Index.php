@@ -40,7 +40,10 @@ class Index extends Component
         $this->resetValidation();
         $state->store($formData,$this->stateId);
         $this->reset();
-        $this->dispatch('success','عملیات با موفقیت انجام شد');
+        $this->dispatch('success',[
+            'message' => 'عملیات با موفقیت انجام شد',
+            'icon' => 'success'
+        ]);
 
     }
 
@@ -60,7 +63,10 @@ class Index extends Component
     public function delete($stateId)
     {
         $state = State::query()->firstWhere('id',$stateId)->delete();
-        $this->dispatch('success','عملیات حذف با موفقیت انجام شد');
+        $this->dispatch('success',[
+            'message' => 'عملیات حذف موفقیت امیز بود',
+            'icon' => 'success'
+        ]);
 
     }
 

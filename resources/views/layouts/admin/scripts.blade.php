@@ -20,8 +20,8 @@
        })
 
        Toast.fire({
-           icon: 'success',
-           title: $event.detail
+           icon: $event.detail[0].icon,
+           title: $event.detail[0].message
        })
     })
 </script>
