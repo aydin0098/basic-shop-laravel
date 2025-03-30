@@ -3,7 +3,11 @@
         <div class="widget-header">
             <div class="row">
                 <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                    <h4>لیست دسته ها</h4>
+                    <h4>لیست ویژگی دسته
+
+                        <span wire:ignore>{{$categoryName}}</span>
+
+                    </h4>
                 </div>
             </div>
         </div>
@@ -14,47 +18,39 @@
                     <thead>
                     <tr>
                         <th scope="col">ردیف</th>
-                        <th scope="col">نام دسته</th>
-                        <th scope="col">دسته والد</th>
-                        <th scope="col">ویژگی</th>
+                        <th scope="col">نام ویژگی</th>
+                        <th class="text-center" scope="col">مقادیر</th>
                         <th class="text-center" scope="col">عملیات</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($allCategories as $cat)
+                    @foreach($features as $feature)
                         <tr>
                             <td>
                                 <div class="media">
                                     <div class="media-body align-self-center">
-                                        <h6 class="mb-0">{{$loop->iteration + $allCategories->firstItem()-1}}</h6>
+                                        <h6 class="mb-0">{{$loop->iteration + $features->firstItem()-1}}</h6>
                                     </div>
                                 </div>
                             </td>
                             <td>
                                 <div class="media">
                                     <div class="media-body align-self-center">
-                                        <h6 class="mb-0">{{$cat['name']}}</h6>
+                                        <h6 class="mb-0">{{$feature['name']}}</h6>
                                     </div>
                                 </div>
                             </td>
                             <td>
                                 <div class="media">
-                                    <div class="media-body align-self-center">
-                                        <h6 class="mb-0">{{@$cat->category->name}}</h6>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="media">
-                                    <div class="media-body align-self-center">
-                                        <a href="{{route('admin.category.feature',$cat['id'])}}" class="btn btn-outline-primary mb-2 me-4">ویژگی ها</a>
+                                    <div class="media-body align-self-center text-center">
+                                        <a href="{{route('admin.category.feature.values',$feature['id'])}}" class="btn btn-outline-primary mb-2 me-4">مقادیر</a>
                                     </div>
                                 </div>
                             </td>
                             <td class="text-center">
                                 <div class="action-btns">
 
-                                    <a href="javascript:void(0);" wire:click="edit({{$cat['id']}})"
+                                    <a href="javascript:void(0);" wire:click="edit({{$feature['id']}})"
                                        class="action-btn btn-edit bs-tooltip me-2"
                                        data-toggle="tooltip" data-placement="top" title="" data-bs-original-title="Edit">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -63,7 +59,7 @@
                                             <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
                                         </svg>
                                     </a>
-                                    <a  wire:confirm="آیا رکورد حذف شود ؟؟" wire:click="delete({{$cat['id']}})"
+                                    <a  wire:confirm="آیا رکورد حذف شود ؟؟" wire:click="delete({{$feature['id']}})"
                                         href="javascript:void(0);" class="action-btn btn-delete bs-tooltip"
                                         data-toggle="tooltip" data-placement="top" title="" data-bs-original-title="Delete">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -82,7 +78,7 @@
                     @endforeach
                     </tbody>
                 </table>
-                {{$allCategories->links('layouts.admin.paginate')}}
+                {{$features->links('layouts.admin.paginate')}}
             </div>
 
         </div>

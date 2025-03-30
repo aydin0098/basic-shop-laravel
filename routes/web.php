@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 /**
  * Admin Routes
  */
-Route::prefix('/admin')->name('admin.')->group(function (){
+Route::prefix('/admin')->name('admin.')->group(function () {
     Route::get('/dashboard', App\Livewire\Admin\Dashboard\Index::class)->name('dashboard.index');
     /** Countries */
     Route::get('/countries', \App\Livewire\Admin\Country\Index::class)->name('country.index');
@@ -25,7 +25,13 @@ Route::prefix('/admin')->name('admin.')->group(function (){
     /** Cities */
     Route::get('/cities', \App\Livewire\Admin\City\Index::class)->name('city.index');
     /** Categories */
-    Route::get('/categories', \App\Livewire\Admin\Category\Index::class)->name('category.index');
+    Route::prefix('/categories')->name('category.')->group(function () {
+        Route::get('/', \App\Livewire\Admin\Category\Index::class)->name('index');
+        /** Category Feature */
+        Route::get('/{category}/features',App\Livewire\Admin\Category\Feature::class)->name('feature');
+        /** Category Feature Values */
+        Route::get('features/{feature}/values',\App\Livewire\Admin\Category\FeatureValues::class)->name('feature.values');
+    });
     Route::get('/test', \App\Livewire\Test::class)->name('country.test');
 });
 
