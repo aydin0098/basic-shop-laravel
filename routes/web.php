@@ -32,6 +32,12 @@ Route::prefix('/admin')->name('admin.')->group(function () {
         /** Category Feature Values */
         Route::get('features/{feature}/values',\App\Livewire\Admin\Category\FeatureValues::class)->name('feature.values');
     });
+
+    /** Products */
+    Route::prefix('/products')->name('product.')->group(function (){
+       Route::get('/create',App\Livewire\Admin\Product\Create::class)->name('create');
+    });
+
     Route::get('/test', \App\Livewire\Test::class)->name('country.test');
 });
 

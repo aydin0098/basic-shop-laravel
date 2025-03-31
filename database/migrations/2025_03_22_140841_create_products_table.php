@@ -17,12 +17,12 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name');
             $table->bigInteger('price')->default(0);
-            $table->integer('discount')->default(0);
+            $table->integer('discount')->default(0)->nullable();
             $table->text('short_description')->nullable();
             $table->longText('long_description')->nullable();
             $table->integer('stock')->default(0);
             $table->boolean('featured')->default(false);
-            $table->date('discount_duration')->nullable();
+            $table->timestamp('discount_duration')->nullable();
             $table->foreignId('seller_id')->nullable()->constrained();
             $table->foreignId('category_id')->nullable()->constrained();
             $table->timestamps();

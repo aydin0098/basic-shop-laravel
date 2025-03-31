@@ -31,6 +31,8 @@
 
     <link href="/admin/src/plugins/css/light/loaders/custom-loader.css" rel="stylesheet" type="text/css">
     <link href="/admin/src/plugins/css/dark/loaders/custom-loader.css" rel="stylesheet" type="text/css">
+
+
     @yield('styles')
 
 </head>
