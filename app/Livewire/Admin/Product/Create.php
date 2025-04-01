@@ -7,12 +7,17 @@ use App\Models\Product;
 use App\Models\Seller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Livewire\Attributes\Validate;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Create extends Component
 {
+    use WithFileUploads;
     public $categories = [];
     public $sellers = [];
+
+    public $photos = [];
 
     public $productId;
 
@@ -41,8 +46,12 @@ class Create extends Component
         {
             $formData['featured'] = false;
         }
+
+        $formData['photos']  = $this->photos;
+
         $validator = Validator::make($formData,[
             'name' => 'required|string',
+            'photos.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp',
             'slug' => 'required|string',
             'meta_title' => 'nullable|string',
             'meta_description' => 'nullable|string',
@@ -63,10 +72,11 @@ class Create extends Component
             '*.string' => 'فرمت نام اشتباه است ',
             'category_id.exists' => 'دسته نامعتبر است',
             'seller_id.exists' => 'فروشنده نامعتبر است',
+            'photos.*.image' => 'فرمت عکس نامعتبر است',
         ]);
         $validator->validate();
         $this->resetValidation();
-        $product->store($formData,$this->productId);
+        $product->store($formData,$this->productId,$this->photos);
         $this->reset();
         $this->dispatch('success',[
             'message' => 'عملیات با موفقیت انجام شد',
@@ -79,6 +89,6 @@ class Create extends Component
 
     public function render()
     {
-        return view('livewire.admin.product.create')->layout('layouts.admin.app');
+        return view('livewire.admin.product.create.index')->layout('layouts.admin.app');
     }
 }

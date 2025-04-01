@@ -5,14 +5,15 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
-        "php": "^7.3|^8.0",
+        "php": "^8.0",
         "guzzlehttp/guzzle": "*",
+        "intervention/image": "^3.11",
+        "laravel/framework": "*",
         "laravel/sanctum": "*",
         "laravel/tinker": "*",
+        "livewire/livewire": "*",
         "spatie/ignition": "*",
-        "spatie/laravel-ignition": "*",
-        "laravel/framework": "*",
-        "livewire/livewire": "*"
+        "spatie/laravel-ignition": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.15",
