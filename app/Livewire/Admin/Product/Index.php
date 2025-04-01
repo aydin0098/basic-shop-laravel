@@ -2,12 +2,35 @@
 
 namespace App\Livewire\Admin\Product;
 
+use App\Models\Product;
+use App\Models\ProductImage;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Index extends Component
 {
+    use WithPagination;
+
+    public function edit()
+    {
+
+    }
+
+    public function delete()
+    {
+
+    }
+
     public function render()
     {
-        return view('livewire.admin.product.index');
+        $products = Product::query()
+            ->with(['category','coverImage'])
+            ->latest()
+            ->orderByDesc('created_at')->paginate(20);
+
+        return view('livewire.admin.product.index',[
+            'products' => $products
+        ])->layout('layouts.admin.app');
     }
+
 }

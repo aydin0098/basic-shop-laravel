@@ -9,4 +9,10 @@ class ProductImage extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function coverImage()
+    {
+        return $this->belongsTo(Product::class,'product_id','id');
+
+    }
 }

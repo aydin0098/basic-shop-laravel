@@ -35,6 +35,7 @@ Route::prefix('/admin')->name('admin.')->group(function () {
 
     /** Products */
     Route::prefix('/products')->name('product.')->group(function (){
+       Route::get('/',App\Livewire\Admin\Product\Index::class)->name('index');
        Route::get('/create',App\Livewire\Admin\Product\Create::class)->name('create');
     });
 

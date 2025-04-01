@@ -12,6 +12,7 @@
         "laravel/sanctum": "*",
         "laravel/tinker": "*",
         "livewire/livewire": "*",
+        "orangehill/iseed": "^3.1",
         "spatie/ignition": "*",
         "spatie/laravel-ignition": "*"
     },

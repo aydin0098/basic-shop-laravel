@@ -21,6 +21,8 @@ class Create extends Component
 
     public $productId;
 
+    public $coverIndex;
+
     public $name;
     public $slug;
     public function mount()
@@ -48,10 +50,11 @@ class Create extends Component
         }
 
         $formData['photos']  = $this->photos;
+        $formData['coverIndex']  = $this->coverIndex;
 
         $validator = Validator::make($formData,[
             'name' => 'required|string',
-            'photos.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp',
+            'photos.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp ',
             'slug' => 'required|string',
             'meta_title' => 'nullable|string',
             'meta_description' => 'nullable|string',
@@ -62,6 +65,7 @@ class Create extends Component
             'category_id' => 'required|exists:categories,id',
             'seller_id' => 'nullable|exists:sellers,id',
             'featured' => 'nullable|boolean',
+            'coverIndex' => 'required',
         ],[
             'name.required' => 'فیلد عنوان ضروری است',
             'slug.required' => 'فیلد اسلاگ ضروری است',
@@ -73,18 +77,36 @@ class Create extends Component
             'category_id.exists' => 'دسته نامعتبر است',
             'seller_id.exists' => 'فروشنده نامعتبر است',
             'photos.*.image' => 'فرمت عکس نامعتبر است',
+            'coverIndex.required' => 'تصویر شاخص انتخاب نشده است',
         ]);
         $validator->validate();
         $this->resetValidation();
-        $product->store($formData,$this->productId,$this->photos);
+        $product->store($formData,$this->productId,$this->photos,$this->coverIndex);
         $this->reset();
         $this->dispatch('success',[
             'message' => 'عملیات با موفقیت انجام شد',
             'icon' => 'success'
         ]);
 
+        $this->redirect(route('admin.product.index'));
+
     }
 
+    public function setCoverImage($index)
+    {
+        $this->coverIndex = $index;
+
+    }
+
+    public function removePhoto($index)
+    {
+        if ($index == $this->coverIndex)
+        {
+            $this->coverIndex = null;
+        }
+        array_splice($this->photos,$index,1);
+
+    }
 
 
     public function render()

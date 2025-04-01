@@ -14,14 +14,14 @@ class Product extends Model
 
     protected $guarded = [];
 
-    public function store($formData, $productId, $photos)
+    public function store($formData, $productId, $photos,$coverIndex)
     {
 //        dd($formData);
-        DB::transaction(function() use ($formData, $productId, $photos) {
+        DB::transaction(function() use ($formData, $productId, $photos,$coverIndex) {
 
             $product = $this->createProduct($formData, $productId);
             $this->createSeoItems($product->id, $formData);
-            $this->storeProductImages($photos, $product->id, $formData);
+            $this->storeProductImages($photos, $product->id, $formData,$coverIndex);
             $this->saveResizeImages($photos, $product->id);
         });
 
@@ -43,6 +43,7 @@ class Product extends Model
                 'category_id' => $formData['category_id'],
                 'seller_id' => $formData['seller_id'] ?? null,
                 'featured' => $formData['featured'],
+                'p_code' => env('PRODUCT_CODE_NAME_START').'_'.$this->generateProductCode()
 
             ]
         );
@@ -65,13 +66,14 @@ class Product extends Model
         );
     }
 
-    public function storeProductImages($photos, $productId, $formData)
+    public function storeProductImages($photos, $productId, $formData,$coverIndex)
     {
-        foreach ($photos as $photo) {
+        foreach ($photos as $index => $photo) {
             $path = pathinfo($photo->hashName(), PATHINFO_FILENAME) . '.webp';
             ProductImage::query()->create([
                 'path' => $path,
-                'product_id' => $productId
+                'product_id' => $productId,
+                'is_cover' => $index == $coverIndex
             ]);
         }
     }
@@ -97,5 +99,30 @@ class Product extends Model
             ->scale($width, $height)
             ->toWebp()
             ->save($path . '/' . pathinfo($photo->hashName(), PATHINFO_FILENAME) . '.webp');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+
+    }
+
+    public function coverImage()
+    {
+        return $this->belongsTo(ProductImage::class,'id','product_id')
+            ->where('is_cover','=',true);
+
+    }
+
+    public function generateProductCode()
+    {
+        do {
+            $randomCode = rand(1000,100000000);
+            $checkCode = Product::query()->where('p_code',$randomCode)->first();
+
+        }while($checkCode);
+
+        return $randomCode;
+
     }
 }

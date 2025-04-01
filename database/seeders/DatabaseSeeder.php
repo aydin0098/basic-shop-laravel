@@ -18,5 +18,8 @@ class DatabaseSeeder extends Seeder
         $this->call(CategorySeeder::class);
         $this->call(FeatureSeeder::class);
         // \App\Models\User::factory(10)->create();
+        $this->call(ProductsTableSeeder::class);
+        $this->call(SeoItemsTableSeeder::class);
+        $this->call(ProductImagesTableSeeder::class);
     }
 }
