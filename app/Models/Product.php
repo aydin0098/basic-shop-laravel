@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
 
@@ -23,7 +24,7 @@ class Product extends Model
             $product = $this->createProduct($formData, $productId);
             $this->createSeoItems($product->id, $formData);
             $this->storeProductImages($photos, $product->id, $formData,$coverIndex);
-            $this->saveResizeImages($photos, $product->id);
+            $this->saveResizeImages($photos, $product->p_code);
         });
 
 
@@ -79,12 +80,12 @@ class Product extends Model
         }
     }
 
-    public function saveResizeImages($photos, $productId)
+    public function saveResizeImages($photos, $p_code)
     {
         foreach ($photos as $photo) {
-            $this->resizeImage($photo, $productId, 100, 100, 'small');
-            $this->resizeImage($photo, $productId, 300, 300, 'medium');
-            $this->resizeImage($photo, $productId, 800, 800, 'large');
+            $this->resizeImage($photo, $p_code, 100, 100, 'small');
+            $this->resizeImage($photo, $p_code, 300, 300, 'medium');
+            $this->resizeImage($photo, $p_code, 800, 800, 'large');
             $photo->delete();
         }
     }
@@ -125,5 +126,21 @@ class Product extends Model
 
         return $randomCode;
 
+    }
+
+    public function deleteProduct(Product $product)
+    {
+        DB::transaction(function () use ($product){
+
+            $product =  Product::query()->where('id',$product->id)->first();
+            if ($product)
+            {
+                $product->delete();
+            }
+
+            ProductImage::query()->where('product_id',$product->id)->delete();
+            SeoItem::query()->where('ref_id',$product->id)->delete();
+            File::deleteDirectory('products/'.$product->p_code);
+        });
     }
 }

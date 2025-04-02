@@ -14,12 +14,12 @@ class SeoItemsTableSeeder extends Seeder
      */
     public function run()
     {
-
+        
 
         \DB::table('seo_items')->delete();
-
+        
         \DB::table('seo_items')->insert(array (
-            0 =>
+            0 => 
             array (
                 'id' => 1,
                 'slug' => 'گوشی-موبایل-اپل-مدل-iphone-16-ch-دو-سیم-کارت-ظرفیت-128-گیگابایت-و-رم-8-گیگابایت',
@@ -28,10 +28,11 @@ class SeoItemsTableSeeder extends Seeder
 ',
                 'type' => 'product',
                 'ref_id' => 1,
+                'deleted_at' => '2025-04-02 16:47:05',
                 'created_at' => '2025-04-01 17:48:44',
-                'updated_at' => '2025-04-01 17:48:44',
+                'updated_at' => '2025-04-02 16:47:05',
             ),
-            1 =>
+            1 => 
             array (
                 'id' => 2,
                 'slug' => 'گوشی-موبایل-اپل-مدل-iphone-13-ch-دو-سیم-کارت-ظرفیت-128-گیگابایت-و-رم-4-گیگابایت-نات-اکتیو',
@@ -40,10 +41,11 @@ class SeoItemsTableSeeder extends Seeder
 ',
                 'type' => 'product',
                 'ref_id' => 2,
+                'deleted_at' => '2025-04-02 16:47:02',
                 'created_at' => '2025-04-01 18:21:58',
-                'updated_at' => '2025-04-01 18:21:58',
+                'updated_at' => '2025-04-02 16:47:02',
             ),
-            2 =>
+            2 => 
             array (
                 'id' => 3,
                 'slug' => 'گوشی-موبایل-سامسونگ-مدل-galaxy-a05s-دو-سیم-کارت-ظرفیت-128-گیگابایت-و-رم-4-گیگابایت',
@@ -52,11 +54,88 @@ class SeoItemsTableSeeder extends Seeder
 ',
                 'type' => 'product',
                 'ref_id' => 3,
+                'deleted_at' => '2025-04-02 16:46:59',
                 'created_at' => '2025-04-01 18:56:20',
-                'updated_at' => '2025-04-01 18:56:20',
+                'updated_at' => '2025-04-02 16:46:59',
+            ),
+            3 => 
+            array (
+                'id' => 4,
+                'slug' => 'dsfsdfsf',
+                'meta_title' => '',
+                'meta_description' => '',
+                'type' => 'product',
+                'ref_id' => 4,
+                'deleted_at' => '2025-04-02 16:46:56',
+                'created_at' => '2025-04-02 16:45:04',
+                'updated_at' => '2025-04-02 16:46:56',
+            ),
+            4 => 
+            array (
+                'id' => 5,
+                'slug' => 'ererwrw',
+                'meta_title' => '',
+                'meta_description' => '',
+                'type' => 'product',
+                'ref_id' => 5,
+                'deleted_at' => '2025-04-02 16:46:53',
+                'created_at' => '2025-04-02 16:45:56',
+                'updated_at' => '2025-04-02 16:46:53',
+            ),
+            5 => 
+            array (
+                'id' => 6,
+                'slug' => 'لپ-تاپ-156-اینچی-ایسوس-مدل-vivobook-15-x1504va-nj104-i5-1335u-8gb-ddr4-512gb-ssd-tft',
+                'meta_title' => 'قیمت و خرید لپ تاپ 15.6 اینچی ایسوس مدل Vivobook 15 X1504VA-NJ104-i5 1335U-8GB DDR4-512GB SSD-TFT',
+                'meta_description' => 'خرید اینترنتی لپ تاپ 15.6 اینچی ایسوس مدل Vivobook 15 X1504VA-NJ104-i5 1335U-8GB DDR4-512GB SSD-TFT با رنگبندی نقره ای به همراه مقایسه، بررسی مشخصات و لیست قیمت امروز در فروشگاه اینترنتی دیجی‌کالا
+',
+                'type' => 'product',
+                'ref_id' => 6,
+                'deleted_at' => NULL,
+                'created_at' => '2025-04-02 16:49:43',
+                'updated_at' => '2025-04-02 16:49:43',
+            ),
+            6 => 
+            array (
+                'id' => 7,
+                'slug' => 'گوشی-موبایل-اپل-مدل-iphone-16-ch-دو-سیم-کارت-ظرفیت-128-گیگابایت-و-رم-8-گیگابایت',
+                'meta_title' => 'قیمت و خرید گوشی موبایل اپل مدل iPhone 16 CH دو سیم کارت ظرفیت 128 گیگابایت و رم 8 گیگابایت',
+                'meta_description' => 'خرید اینترنتی گوشی موبایل اپل مدل iPhone 16 CH دو سیم کارت ظرفیت 128 گیگابایت و رم 8 گیگابایت با رنگبندی صورتی، سبز، مشکی، سفید، آبی به همراه مقایسه، بررسی مشخصات و لیست قیمت امروز در فروشگاه اینترنتی دیجی‌کالا
+',
+                'type' => 'product',
+                'ref_id' => 7,
+                'deleted_at' => NULL,
+                'created_at' => '2025-04-02 16:51:51',
+                'updated_at' => '2025-04-02 16:51:51',
+            ),
+            7 => 
+            array (
+                'id' => 8,
+                'slug' => 'گوشی-موبایل-اپل-مدل-iphone-13-pro-ch-دو-سیم-کارت-ظرفیت-256-گیگابایت-و-6-گیگابایت-رم-نات-اکتیو',
+                'meta_title' => 'قیمت و خرید گوشی موبایل اپل مدل iPhone 13 Pro CH دو سیم‌ کارت ظرفیت 256 گیگابایت و 6 گیگابایت رم - نات اکتیو',
+                'meta_description' => 'خرید اینترنتی گوشی موبایل اپل مدل iPhone 13 Pro CH دو سیم‌ کارت ظرفیت 256 گیگابایت و 6 گیگابایت رم - نات اکتیو با رنگبندی سفید به همراه مقایسه، بررسی مشخصات و لیست قیمت امروز در فروشگاه اینترنتی دیجی‌کالا
+',
+                'type' => 'product',
+                'ref_id' => 8,
+                'deleted_at' => NULL,
+                'created_at' => '2025-04-02 16:54:10',
+                'updated_at' => '2025-04-02 16:54:10',
+            ),
+            8 => 
+            array (
+                'id' => 9,
+                'slug' => 'هدفون-بلوتوثی-موزیک-آپولو-مدل-neutral-p500-earbuds',
+                'meta_title' => 'قیمت و خرید هدفون بلوتوثی موزیک آپولو مدل NEUTRAL P500 EARBUDS',
+                'meta_description' => 'خرید اینترنتی هدفون بلوتوثی موزیک آپولو مدل NEUTRAL P500 EARBUDS با رنگبندی سفید به همراه مقایسه، بررسی مشخصات و لیست قیمت امروز در فروشگاه اینترنتی دیجی‌کالا
+',
+                'type' => 'product',
+                'ref_id' => 9,
+                'deleted_at' => NULL,
+                'created_at' => '2025-04-02 16:56:42',
+                'updated_at' => '2025-04-02 16:56:42',
             ),
         ));
-
-
+        
+        
     }
 }

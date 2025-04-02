@@ -48,7 +48,7 @@
                                 <td>
                                     <div class="media">
                                         <div class="media-body align-self-center">
-                                            <img src="/products/{{$product['id']}}/small/{{@$product->coverImage->path}}" alt="">
+                                            <img src="/products/{{$product['p_code']}}/small/{{@$product->coverImage->path}}" alt="">
                                         </div>
                                     </div>
                                 </td>
