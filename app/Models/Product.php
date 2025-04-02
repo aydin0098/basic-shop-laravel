@@ -4,13 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory,SoftDeletes;
 
     protected $guarded = [];
 

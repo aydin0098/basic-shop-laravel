@@ -26,6 +26,7 @@ class CreateProductsTable extends Migration
             $table->foreignId('seller_id')->nullable()->constrained();
             $table->foreignId('category_id')->nullable()->constrained();
             $table->string('p_code')->nullable()->unique();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

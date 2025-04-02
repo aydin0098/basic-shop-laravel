@@ -22,6 +22,7 @@ class CreateOrdersTable extends Migration
             $table->foreignId('payment_method_id')->constrained();
             $table->foreignId('delivery_id')->constrained();
             $table->enum('status',['pending','processing','complete','canceled'])->default('pending');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

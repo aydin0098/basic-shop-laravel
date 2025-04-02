@@ -20,6 +20,7 @@ class CreateProductReviewsTable extends Migration
             $table->enum('status',['pending','approved','rejected'])->default('pending');
             $table->foreignId('product_id')->constrained();
             $table->foreignId('user_id')->constrained();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

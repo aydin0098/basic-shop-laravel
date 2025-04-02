@@ -20,6 +20,7 @@ class CreateSellersTable extends Migration
             $table->string('phone');
             $table->text('description')->nullable();
             $table->string('address');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -22,6 +22,7 @@ class CreateAddressesTable extends Migration
             $table->foreignId('state_id')->constrained();
             $table->foreignId('city_id')->constrained();
             $table->foreignId('user_id')->constrained();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

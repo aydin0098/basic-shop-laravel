@@ -17,6 +17,7 @@ class CreateCategoryFeaturesTable extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('category_id')->constrained();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

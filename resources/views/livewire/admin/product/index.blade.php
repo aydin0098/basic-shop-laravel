@@ -4,8 +4,11 @@
         <div class="statbox widget box box-shadow">
             <div class="widget-header">
                 <div class="row">
-                    <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                    <div class="d-flex justify-content-between align-items-center">
                         <h4>لیست محصولات</h4>
+                        <a href="{{route('admin.product.create')}}" class="btn btn-outline-success mb-2 me-4 mt-4">
+                            افزودن محصول جدید
+                        </a>
                     </div>
                 </div>
             </div>
@@ -16,10 +19,11 @@
                         <thead>
                         <tr>
                             <th scope="col">ردیف</th>
+                            <th scope="col">کد محصول</th>
                             <th scope="col">تصویر محصول</th>
                             <th scope="col">نام محصول</th>
                             <th scope="col">دسته بندی</th>
-                            <th scope="col">قیمت محصول</th>
+                            <th scope="col">قیمت</th>
                             <th class="text-center" scope="col">عملیات</th>
                         </tr>
                         </thead>
@@ -30,6 +34,14 @@
                                     <div class="media">
                                         <div class="media-body align-self-center">
                                             <h6 class="mb-0">{{$loop->iteration + $products->firstItem()-1}}</h6>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="media">
+                                        <div class="media-body align-self-center">
+                                            <h6 class="mb-0">{{$product['p_code']}}</h6>
+
                                         </div>
                                     </div>
                                 </td>
