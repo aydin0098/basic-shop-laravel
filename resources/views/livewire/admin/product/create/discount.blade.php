@@ -3,7 +3,8 @@
         <div class="row">
             <div class="col-sm-12 mb-4">
                 <label for="regular-price">درصد تخفیف</label>
-                <input type="text" name="discount" class="form-control" id="regular-price">
+                <input type="text" name="discount" value="{{@$product['discount']}}"
+                       class="form-control" id="regular-price">
             </div>
             @error('discount')
             <div class="alert alert-light-danger alert-dismissible fade show border-0 mb-4 mt-4"
@@ -15,7 +16,8 @@
             @enderror
             <div class="col-sm-12 mb-4">
                 <label for="sale-price">تاریخ انقضا</label>
-                <input type="date" name="discount_duration" class="form-control" id="sale-price">
+                <input type="date" value="{{@$product['discount_duration']}}"
+                       name="discount_duration" class="form-control" id="sale-price">
             </div>
             @error('discount_duration')
             <div class="alert alert-light-danger alert-dismissible fade show border-0 mb-4 mt-4"
@@ -27,7 +29,8 @@
             @enderror
             <div class="col-sm-12 mb-4">
                 <div class="switch form-switch-custom switch-inline form-switch-danger">
-                    <input name="featured" class="switch-input" type="checkbox" role="switch" id="pricing-includes-texes">
+                    <input name="featured" {{@$product->featured == 1 ? 'checked' : ''}}
+                           class="switch-input" type="checkbox" role="switch" id="pricing-includes-texes">
                     <label class="switch-label" for="pricing-includes-texes">کالای ویژه</label>
                 </div>
                 @error('featured')

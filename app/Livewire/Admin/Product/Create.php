@@ -4,7 +4,9 @@ namespace App\Livewire\Admin\Product;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductImage;
 use App\Models\Seller;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Livewire\Attributes\Validate;
@@ -25,8 +27,19 @@ class Create extends Component
 
     public $name;
     public $slug;
+
+    public $product;
+
     public function mount()
     {
+        if ($_GET and $_GET['p_id'])
+        {
+            $this->productId = $_GET['p_id'];
+            $this->product = Product::query()
+                ->with(['seo','images'])->where('id',$this->productId)->firstOrFail();
+            $this->name = $this->product->name;
+            $this->slug = $this->product->seo->slug;
+        }
         $this->categories = Category::all();
         $this->sellers = Seller::all();
 
@@ -82,7 +95,6 @@ class Create extends Component
         $validator->validate();
         $this->resetValidation();
         $product->store($formData,$this->productId,$this->photos,$this->coverIndex);
-        $this->reset();
         $this->dispatch('success',[
             'message' => 'عملیات با موفقیت انجام شد',
             'icon' => 'success'
@@ -106,6 +118,23 @@ class Create extends Component
         }
         array_splice($this->photos,$index,1);
 
+    }
+
+    public function removeOldPhoto(ProductImage $productImage,$productId)
+    {
+        $productImage->delete();
+        File::delete(public_path('/products/'.$productId.'/small/'.$productImage->path));
+        File::delete(public_path('/products/'.$productId.'/medium/'.$productImage->path));
+        File::delete(public_path('/products/'.$productId.'/large/'.$productImage->path));
+    }
+
+    public function setOldCoverImage($photoId)
+    {
+        ProductImage::query()->where('product_id', $this->productId)->update(['is_cover' => false]);
+        ProductImage::query()->where([
+            'product_id' => $this->productId,
+            'id' => $photoId,
+        ])->update(['is_cover' => true]);
     }
 
 

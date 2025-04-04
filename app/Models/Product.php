@@ -24,7 +24,7 @@ class Product extends Model
             $product = $this->createProduct($formData, $productId);
             $this->createSeoItems($product->id, $formData);
             $this->storeProductImages($photos, $product->id, $formData,$coverIndex);
-            $this->saveResizeImages($photos, $product->p_code);
+            $this->saveResizeImages($photos, $product->id);
         });
 
 
@@ -70,22 +70,28 @@ class Product extends Model
 
     public function storeProductImages($photos, $productId, $formData,$coverIndex)
     {
+        ProductImage::query()->where('product_id', $productId)->update(['is_cover' => false]);
+
         foreach ($photos as $index => $photo) {
+
             $path = pathinfo($photo->hashName(), PATHINFO_FILENAME) . '.webp';
-            ProductImage::query()->create([
-                'path' => $path,
-                'product_id' => $productId,
-                'is_cover' => $index == $coverIndex
-            ]);
+
+            ProductImage::query()->create(
+                [
+                    'path' => $path,
+                    'product_id' => $productId,
+                    'is_cover' => $index == $coverIndex,
+                ]
+            );
         }
     }
 
-    public function saveResizeImages($photos, $p_code)
+    public function saveResizeImages($photos, $productId)
     {
         foreach ($photos as $photo) {
-            $this->resizeImage($photo, $p_code, 100, 100, 'small');
-            $this->resizeImage($photo, $p_code, 300, 300, 'medium');
-            $this->resizeImage($photo, $p_code, 800, 800, 'large');
+            $this->resizeImage($photo, $productId, 100, 100, 'small');
+            $this->resizeImage($photo, $productId, 300, 300, 'medium');
+            $this->resizeImage($photo, $productId, 800, 800, 'large');
             $photo->delete();
         }
     }
@@ -128,16 +134,24 @@ class Product extends Model
 
     }
 
+    public function seo()
+    {
+        return $this->belongsTo(SeoItem::class,'id','ref_id');
+
+    }
+
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class);
+
+    }
+
     public function deleteProduct(Product $product)
     {
         DB::transaction(function () use ($product){
 
             $product =  Product::query()->where('id',$product->id)->first();
-            if ($product)
-            {
-                $product->delete();
-            }
-
+            $product->delete();
             ProductImage::query()->where('product_id',$product->id)->delete();
             SeoItem::query()->where('ref_id',$product->id)->delete();
             File::deleteDirectory('products/'.$product->p_code);

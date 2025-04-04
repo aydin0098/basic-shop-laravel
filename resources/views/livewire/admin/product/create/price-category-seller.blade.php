@@ -3,7 +3,8 @@
         <div class="row">
             <div class="col-xxl-12 col-md-6 mb-4">
                 <label for="proCode">قیمت</label>
-                <input name="price" type="text" class="form-control" id="proCode" value="">
+                <input name="price"
+                       type="text" class="form-control" id="proCode" value="{{@$product['price']}}">
             </div>
             @error('price')
             <div class="alert alert-light-danger alert-dismissible fade show border-0 mb-4 mt-4"
@@ -15,7 +16,7 @@
             @enderror
             <div class="col-xxl-12 col-md-6 mb-4">
                 <label for="proSKU">موجودی</label>
-                <input name="stock" type="text" class="form-control" id="proSKU" value="">
+                <input name="stock" type="text" class="form-control" id="proSKU" value="{{@$product['stock']}}">
             </div>
             @error('stock')
             <div class="alert alert-light-danger alert-dismissible fade show border-0 mb-4 mt-4"
@@ -29,7 +30,8 @@
                 <label for="gender">فروشنده</label>
                 <select name="seller_id" class="form-select" id="gender">
                     @foreach($sellers as $seller)
-                        <option value="{{$seller['id']}}">{{$seller['name']}}</option>
+                        <option
+                            value="{{$seller['id']}}">{{$seller['name']}}</option>
                     @endforeach
                 </select>
                 @error('seller_id')
@@ -45,7 +47,8 @@
                 <label for="category">دسته محصول</label>
                 <select name="category_id" class="form-select" id="category">
                     @foreach($categories as $cat)
-                        <option value="{{$cat['id']}}">{{$cat['name']}}</option>
+                        <option {{@$product->category_id == $cat['id'] ? 'selected' : ''}}
+                            value="{{$cat['id']}}">{{$cat['name']}}</option>
                     @endforeach
                 </select>
                 @error('category_id')
