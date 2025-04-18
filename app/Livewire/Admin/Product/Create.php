@@ -135,6 +135,11 @@ class Create extends Component
             'product_id' => $this->productId,
             'id' => $photoId,
         ])->update(['is_cover' => true]);
+
+        $this->dispatch('success',[
+            'message' => 'تصویر شاخص با موفقیت ویرایش شد',
+            'icon' => 'success'
+        ]);
     }
 
 

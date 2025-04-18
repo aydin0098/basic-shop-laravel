@@ -20,6 +20,16 @@
                     </div>
                 </div>
 
+                @error('photos.*')
+                <div class="alert alert-light-danger alert-dismissible fade show border-0 mb-4 mt-4"
+                     wire:loading.remove
+                     role="alert">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                        <svg> ...</svg>
+                    </button>
+                    <strong>خطا!</strong>{{$message}}
+                </div>
+                @enderror
 
                 @error('coverIndex')
                 <div class="alert alert-light-danger alert-dismissible fade show border-0 mb-4 mt-4"
@@ -65,16 +75,7 @@
                     @endforeach
                 </div>
 
-                @error('photos.*')
-                <div class="alert alert-light-danger alert-dismissible fade show border-0 mb-4 mt-4"
-                     wire:loading.remove
-                     role="alert">
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                        <svg> ...</svg>
-                    </button>
-                    <strong>خطا!</strong>{{$message}}
-                </div>
-                @enderror
+
             </div>
         </div>
 

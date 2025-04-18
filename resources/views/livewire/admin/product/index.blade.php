@@ -24,6 +24,7 @@
                             <th scope="col">نام محصول</th>
                             <th scope="col">دسته بندی</th>
                             <th scope="col">قیمت</th>
+                            <th scope="col">ویژگی ها</th>
                             <th class="text-center" scope="col">عملیات</th>
                         </tr>
                         </thead>
@@ -70,6 +71,13 @@
                                     <div class="media">
                                         <div class="media-body align-self-center">
                                             <h6 class="mb-0">{{number_format($product['price'])}}</h6>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="media">
+                                        <div class="media-body align-self-center">
+                                            <a href="{{route('admin.product.feature',$product['id'])}}" class="btn btn-outline-primary mb-2">ویژگی</a>
                                         </div>
                                     </div>
                                 </td>
